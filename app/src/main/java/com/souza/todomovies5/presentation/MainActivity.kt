@@ -1,7 +1,8 @@
-package com.souza.todomovies5
+package com.souza.todomovies5.presentation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.souza.todomovies5.R
 
 class MainActivity : AppCompatActivity() {
 
