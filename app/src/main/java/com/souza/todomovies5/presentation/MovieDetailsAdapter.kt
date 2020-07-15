@@ -7,20 +7,20 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.souza.todomovies5.R
-import com.souza.todomovies5.data.todomovies.remote.response.Movie
+import com.souza.todomovies5.data.todomovies.remote.response.SimilarMovies
+import com.souza.todomovies5.utils.dateFormat
 
 class MovieDetailsAdapter : RecyclerView.Adapter<MovieDetailsAdapter.ViewHolder>() {
 
-    private val movies =  mutableListOf<Movie>(
-        Movie("Teste de Filme", "genero", "2005", "bla bla"),
-        Movie("Teste de Filme", "genero", "2005", "bla bla"),
-        Movie("Teste de Filme", "genero", "2005", "bla bla"),
-        Movie("Teste de Filme", "genero", "2005", "bla bla"),
-        Movie("Teste de Filme", "genero", "2005", "bla bla"),
-        Movie("Teste de Filme", "genero", "2005", "bla bla"),
-        Movie("Teste de Filme", "genero", "2005", "bla bla")
-    )
+    private val movies =  mutableListOf<SimilarMovies>()
 
+    fun submitList(newData: List<SimilarMovies>) {
+        if(movies.isNotEmpty()){
+            movies.clear()
+        }
+        movies.addAll(newData)
+        notifyDataSetChanged()
+    }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater
             .from(parent.context)
@@ -45,10 +45,10 @@ class MovieDetailsAdapter : RecyclerView.Adapter<MovieDetailsAdapter.ViewHolder>
         private val movieGenre: TextView = itemView.findViewById(R.id.genre_text_view_movie_list_item)
         private val moviePoster: ImageView = itemView.findViewById(R.id.poster_image_view_movie_list_item)
 
-        fun itemBind(movie: Movie) {
+        fun itemBind(movie: SimilarMovies) {
             movieTitle.text = movie.title
-            movieReleaseDate.text = movie.releaseDate
-            movieGenre.text = movie.releaseDate
+            movieReleaseDate.text = movie.releaseDate?.let { dateFormat(it) }
+            movieGenre.text = movie.genres.toString()
             //load image extension with glide.. bla bla
         }
     }
