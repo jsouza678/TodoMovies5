@@ -33,5 +33,12 @@ dependencies {
     testImplementation "junit:junit:$test_junit_version"
     androidTestImplementation "androidx.test.ext:junit:$test_junit_androidx_version"
 
+    // Shape of View
     implementation "com.github.florent37:shapeofview:$shape_of_view_version"
+
+    // RecyclerView
+    implementation "com.android.support:recyclerview-v7:$recycler_view_version"
+
+    // Material Design
+    implementation "com.google.android.material:material:$material_design_version"
 }

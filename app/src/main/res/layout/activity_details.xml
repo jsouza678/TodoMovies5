@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.motion.widget.MotionLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layoutDescription="@xml/collapsing_toolbar"
+    tools:context=".presentation.DetailsActivity">
+
+    <com.github.florent37.shapeofview.shapes.DiagonalView
+        android:id="@+id/diagonal_container_poster_detail_activity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:shape_diagonal_angle="-10"
+        app:shape_diagonal_position="bottom">
+
+        <ImageView
+            android:id="@+id/poster_image_view_detail_activity"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:contentDescription="@string/content_description_poster_image_of_movie"
+            android:scaleType="centerCrop"
+            android:src="@drawable/poster_mock" />
+
+    </com.github.florent37.shapeofview.shapes.DiagonalView>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/default_container"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@id/diagonal_container_poster_detail_activity"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <TextView
+            android:id="@+id/movie_date_text_view_detail_activity"
+            style="@style/default_movie_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/mock_movie_release_date_list"
+            android:textAllCaps="true"
+            android:textAlignment="textStart"
+            android:layout_marginStart="@dimen/material_default_margin_8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/movie_duration_text_view_detail_activity"
+            style="@style/default_movie_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/mock_movie_duration_list"
+            android:textAllCaps="true"
+            android:textAlignment="textStart"
+            android:layout_marginStart="@dimen/material_default_margin_8dp"
+            app:layout_constraintStart_toEndOf="@id/movie_date_text_view_detail_activity"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/title_movie_text_view_detail_activity"
+            style="@style/default_movie_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/mock_movie_title_list"
+            android:textAllCaps="true"
+            android:textAlignment="textStart"
+            android:textSize="18sp"
+            android:layout_marginStart="@dimen/material_default_margin_8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/movie_duration_text_view_detail_activity" />
+
+        <ImageView
+            android:id="@+id/love_movie_image_view_detail_activity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_favorite_empty"
+            android:layout_marginEnd="@dimen/material_default_margin_8dp"
+            android:layout_marginTop="@dimen/material_default_margin_8dp"
+            app:layout_constraintTop_toBottomOf="@id/title_movie_text_view_detail_activity"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <TextView
+            android:id="@+id/genre_movie_text_view_detail_activity"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/mock_movie_genre_list"
+            android:layout_marginEnd="@dimen/material_default_margin_8dp"
+            android:layout_marginTop="@dimen/material_default_margin_8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            android:textAlignment="textEnd"
+            app:layout_constraintBottom_toBottomOf="@id/love_movie_image_view_detail_activity"
+            app:layout_constraintTop_toBottomOf="@id/title_movie_text_view_detail_activity"
+            app:layout_constraintEnd_toStartOf="@id/love_movie_image_view_detail_activity"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/similar_recycler_view_detail_activity"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:visibility="visible"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintTop_toBottomOf="@id/genre_movie_text_view_detail_activity"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:itemCount="2"
+            tools:listitem="@layout/movie_list_item" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.motion.widget.MotionLayout>
