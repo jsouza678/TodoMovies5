@@ -9,4 +9,6 @@
     <color name="secondary_text_color">#737373</color>
     <color name="list_background_color">#FFFFFF</color>
 
+    <color name="red_prohibited_color">#7B3737</color>
+
 </resources>

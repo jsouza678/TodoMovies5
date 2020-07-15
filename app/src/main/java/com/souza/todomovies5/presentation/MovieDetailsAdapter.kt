@@ -8,6 +8,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.souza.todomovies5.R
 import com.souza.todomovies5.data.todomovies.remote.response.SimilarMovies
+import com.souza.todomovies5.extensions.loadPosterImage
 import com.souza.todomovies5.utils.dateFormat
 
 class MovieDetailsAdapter : RecyclerView.Adapter<MovieDetailsAdapter.ViewHolder>() {
@@ -49,8 +50,7 @@ class MovieDetailsAdapter : RecyclerView.Adapter<MovieDetailsAdapter.ViewHolder>
             movieTitle.text = movie.title
             movieReleaseDate.text = movie.releaseDate?.let { dateFormat(it) }
             movieGenre.text = movie.genres.toString()
-            //load image extension with glide.. bla bla
+            moviePoster.loadPosterImage(movie.getImageUrl())
         }
     }
-
 }

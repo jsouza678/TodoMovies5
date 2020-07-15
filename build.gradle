@@ -30,6 +30,7 @@ buildscript {
         retrofit_coroutines_adapter_version = "0.9.2"
         retrofit_version = "2.5.0"
         view_model_version = "1.1.1"
+        glide_version = '4.9.0'
     }
 
     repositories {

@@ -11,6 +11,7 @@ import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface MovieDetailService {
+
     @GET("{id}")
     fun fetchMovieDetailsAsync(@Path("id") id: Int,
                                @Query("api_key") api_key: String = API_KEY,
