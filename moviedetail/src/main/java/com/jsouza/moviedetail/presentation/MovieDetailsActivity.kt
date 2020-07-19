@@ -42,8 +42,8 @@ class MovieDetailsActivity : AppCompatActivity() {
         checkConnectivity.observe(this@MovieDetailsActivity,
             Observer { hasNetworkConnectivity ->
                 this.hasNetworkConnectivity = hasNetworkConnectivity
-                viewModel
-                    .mustShowConnectivitySnackbar(hasNetworkConnectivity = hasNetworkConnectivity)
+
+                viewModel.mustShowConnectivitySnackbar(hasNetworkConnectivity)
             })
 
         viewModel.apply {
@@ -100,11 +100,13 @@ class MovieDetailsActivity : AppCompatActivity() {
     }
 
     private fun isFavoriteMovie() {
-        binding.favoriteMovieToggleButtonDetailActivity.isChecked = viewModel.getIsFavoriteMovieFromCache()
+        binding.favoriteMovieToggleButtonDetailActivity.isChecked = viewModel
+            .getIsFavoriteMovieFromCache()
     }
 
     private fun setupFavoriteButton() {
-        binding.favoriteMovieToggleButtonDetailActivity.setOnCheckedChangeListener { _, isFavorite ->
+        binding.favoriteMovieToggleButtonDetailActivity
+            .setOnCheckedChangeListener { _, isFavorite ->
             when (isFavorite) {
                 true -> viewModel.setMovieAsFavoriteOnCache(true)
                 false -> viewModel.setMovieAsFavoriteOnCache(false)
