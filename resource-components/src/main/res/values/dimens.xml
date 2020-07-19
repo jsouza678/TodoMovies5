@@ -3,8 +3,4 @@
     // Material Design
     <dimen name="material_default_margin_8dp">8dp</dimen>
     <dimen name="material_default_margin_16dp">16dp</dimen>
-
-    // Movie List Item
-    <dimen name="poster_width_movie_list_item">102dp</dimen>
-    <dimen name="poster_height_movie_list_item">149dp</dimen>
 </resources>
