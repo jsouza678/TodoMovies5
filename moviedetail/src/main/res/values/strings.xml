@@ -1,16 +1,16 @@
 <resources>
     // Details Screen
-    <string name="content_description_poster_image_of_movie">Poster image of movie</string>
+    <string name="content_description_poster_image_of_movie">Poster do filme</string>
 
     // Movie Item
     <string name="mock_movie_title_list">Tenacious D : The Pick of the Destiny</string>
     <string name="mock_movie_release_date_list">2002</string>
     <string name="mock_movie_genre_list">Ação, Comédia, Música, Família</string>
     <string name="mock_movie_duration_list">120 min</string>
-    <string name="content_description_love_details_activity">Love this movie!</string>
+    <string name="content_description_love_details_activity">Favorite esse filme!</string>
 
     // Connectivity
-    <string name="snackbar_message_internet_back">Your internet connection is back :)</string>
-    <string name="snackbar_internet_off">No internet connection, working offline</string>
+    <string name="snackbar_message_internet_back">Sua conexão está de volta :)</string>
+    <string name="snackbar_internet_off">Sem internet! Trabalhando offline </string>
 
 </resources>

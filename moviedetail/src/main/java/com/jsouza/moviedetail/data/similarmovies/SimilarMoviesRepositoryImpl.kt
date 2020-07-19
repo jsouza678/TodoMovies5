@@ -17,18 +17,16 @@ class SimilarMoviesRepositoryImpl(
 ) : SimilarMoviesRepository {
 
     override fun getSimilarMovies(): LiveData<List<SimilarMovies>?> {
-
-        val ret = Transformations.map(similarMoviesDao.getSimilarMovies()) { movieDetailEntity ->
+        return Transformations.map(similarMoviesDao.getSimilarMovies()) { movieDetailEntity ->
             movieDetailEntity?.let {
-                Log.i("Api Error", "$it")
                 SimilarMoviesMapper.toDomainModel(movieDetailEntity)
             }
         }
-
-        return ret
     }
 
-    override suspend fun refreshSimilarMovies(id: Int) {
+    override suspend fun refreshSimilarMovies(
+        id: Int
+    ) {
         withContext(Dispatchers.IO) {
             try {
                 val similarMovies = similarMoviesService

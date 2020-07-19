@@ -7,7 +7,10 @@ import com.jsouza.moviedetail.domain.model.SimilarMovies
 class SimilarMoviesMapper {
 
     companion object {
-        fun toDatabaseModel(response: SimilarMoviesResponse): Array<SimilarMoviesEntity>? {
+
+        fun toDatabaseModel(
+            response: SimilarMoviesResponse
+        ): Array<SimilarMoviesEntity>? {
             return response.results?.map {
                 SimilarMoviesEntity(
                     _id = it.id,
@@ -19,7 +22,9 @@ class SimilarMoviesMapper {
             }?.toTypedArray()
         }
 
-        fun toDomainModel(entity: List<SimilarMoviesEntity>?): List<SimilarMovies>? {
+        fun toDomainModel(
+            entity: List<SimilarMoviesEntity>?
+        ): List<SimilarMovies>? {
             return entity?.map {
                 SimilarMovies(
                     id = it._id,

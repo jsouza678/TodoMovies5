@@ -1,5 +1,1 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.jsouza.resource_components">
-
-    /
-</manifest>
+<manifest package="com.jsouza.resource_components"/>

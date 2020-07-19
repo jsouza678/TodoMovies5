@@ -52,7 +52,8 @@ private fun setupGlide(
     onLoadCompleted: () -> Unit = {},
     onError: () -> Unit = {}
 ): RequestBuilder<Drawable> {
-    val requestBuilder = Glide.with(imageView)
+
+    return Glide.with(imageView)
         .`as`(Drawable::class.java)
         .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
         .listener(object : RequestListener<Drawable> {
@@ -77,6 +78,4 @@ private fun setupGlide(
                 return false
             }
         })
-
-    return requestBuilder
 }

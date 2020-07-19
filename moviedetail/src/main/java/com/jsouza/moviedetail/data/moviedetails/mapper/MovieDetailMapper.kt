@@ -7,7 +7,9 @@ import com.jsouza.moviedetail.domain.model.MovieDetail
 class MovieDetailMapper {
 
     companion object {
-        fun toDatabaseModel(response: MovieDetailResponse): MovieDetailEntity {
+        fun toDatabaseModel(
+            response: MovieDetailResponse
+        ): MovieDetailEntity {
             return MovieDetailEntity(
                 _id = response.id,
                 title = response.title,
@@ -21,7 +23,9 @@ class MovieDetailMapper {
             )
         }
 
-        fun toDomainModel(entity: MovieDetailEntity): MovieDetail {
+        fun toDomainModel(
+            entity: MovieDetailEntity
+        ): MovieDetail {
             return MovieDetail(
                 _id = entity._id,
                 title = entity.title,

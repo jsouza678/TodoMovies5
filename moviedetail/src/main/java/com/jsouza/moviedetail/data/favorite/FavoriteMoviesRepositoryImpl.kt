@@ -13,7 +13,9 @@ class FavoriteMoviesRepositoryImpl(
         return favoriteCache.getIsFavorite(context)
     }
 
-    override fun setIsFavoriteMovie(isFavoriteMovie: Boolean) {
+    override fun setIsFavoriteMovie(
+        isFavoriteMovie: Boolean
+    ) {
         favoriteCache.setMovieAsFavorite(isFavoriteMovie, context)
     }
 }

@@ -16,7 +16,9 @@ class MovieDetailRepositoryImpl(
     private val movieDetailsDao: MovieDetailsDao
 ) : MovieDetailRepository {
 
-    override fun getMovieDetails(id: Int): LiveData<MovieDetail?> {
+    override fun getMovieDetails(
+        id: Int
+    ): LiveData<MovieDetail?> {
         return Transformations.map(movieDetailsDao.getMovieDetails(id)) { movieDetailEntity ->
             movieDetailEntity?.let {
                 MovieDetailMapper.toDomainModel(movieDetailEntity)
@@ -24,7 +26,9 @@ class MovieDetailRepositoryImpl(
         }
     }
 
-    override suspend fun refreshMovieDetails(id: Int) {
+    override suspend fun refreshMovieDetails(
+        id: Int
+    ) {
         withContext(Dispatchers.IO) {
             try {
                 val movieDetails = movieDetailService

@@ -47,7 +47,7 @@ class MovieDetailsViewModel(
         showConnectivityOffSnackbar
 
     fun returnMovieDetailOnLiveData(): LiveData<MovieDetail?> =
-        getMovieDetailsFromDatabase.invoke(76341)
+        getMovieDetailsFromDatabase.invoke(MOVIE_ID)
 
     fun showSimilarMoviesOnLiveData(): LiveData<List<SimilarMovies>?> =
         getSimilarMoviesFromDatabase.invoke()
@@ -58,7 +58,9 @@ class MovieDetailsViewModel(
     fun setMovieAsFavoriteOnCache(isFavoriteMovie: Boolean) =
         setIsFavoriteMovie(isFavoriteMovie)
 
-    fun mustShowConnectivitySnackbar(hasNetworkConnectivity: Boolean) {
+    fun mustShowConnectivitySnackbar(
+        hasNetworkConnectivity: Boolean
+    ) {
         if (hasNetworkConnectivity.not()) {
             showConnectivityOffSnackbar.postValue(Unit)
             wasConnected = false
