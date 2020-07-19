@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.souza.todomovies5">
+    package="com.jsouza.todomovies5">
 
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
@@ -11,7 +12,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         tools:ignore="AllowBackup"
-        android:name="com.souza.todomovies5.Application"
+        android:name="com.jsouza.todomovies5.Application"
         android:theme="@style/AppTheme">
         <activity android:name="com.jsouza.moviedetail.presentation.MovieDetailsActivity">
             <intent-filter>

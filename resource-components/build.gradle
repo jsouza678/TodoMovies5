@@ -27,6 +27,8 @@ android {
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
 
+    api project (':core-components')
+
     api "androidx.appcompat:appcompat:$app_compat_version"
     api "androidx.core:core-ktx:$core_ktx_version"
     api "androidx.constraintlayout:constraintlayout:$constraint_layout_version"

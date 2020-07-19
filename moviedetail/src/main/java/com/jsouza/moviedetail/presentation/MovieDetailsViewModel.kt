@@ -1,6 +1,7 @@
 package com.jsouza.moviedetail.presentation
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.jsouza.moviedetail.domain.model.MovieDetail
@@ -19,15 +20,34 @@ class MovieDetailsViewModel(
     private val getSimilarMoviesFromDatabase: GetSimilarMoviesFromDatabase
 ) : ViewModel() {
 
-    private val coroutineScope = Dispatchers.IO
+    companion object {
+        private const val MOVIE_ID = 76341
+    }
 
-    fun returnMovieDetailOnLiveData(): LiveData<MovieDetail?> = getMovieDetailsFromDatabase.invoke(76341)
-    fun returnSimilarMoviesOnLiveData(): LiveData<List<SimilarMovies>?> = getSimilarMoviesFromDatabase.invoke()
+    private var wasConnected = true
+    private var showConnectivityOnSnackbar = MutableLiveData<Unit>()
+    private var showConnectivityOffSnackbar = MutableLiveData<Unit>()
+    private val coroutineScope = Dispatchers.IO
 
     init {
         viewModelScope.launch(context = coroutineScope) {
-            fetchMovieDetailsFromApi(76341)
-            fetchSimilarMoviesFromApi(76341)
+            fetchMovieDetailsFromApi(MOVIE_ID)
+            fetchSimilarMoviesFromApi(MOVIE_ID)
+        }
+    }
+
+    fun showConnectivityOnSnackbar(): LiveData<Unit> = showConnectivityOnSnackbar
+    fun showConnectivityOffSnackbar(): LiveData<Unit> = showConnectivityOffSnackbar
+    fun returnMovieDetailOnLiveData(): LiveData<MovieDetail?> = getMovieDetailsFromDatabase.invoke(76341)
+    fun returnSimilarMoviesOnLiveData(): LiveData<List<SimilarMovies>?> = getSimilarMoviesFromDatabase.invoke()
+
+    fun mustShowConnectivitySnackbar(hasNetworkConnectivity: Boolean) {
+        if (hasNetworkConnectivity.not()) {
+            showConnectivityOffSnackbar.postValue(Unit)
+            wasConnected = false
+        } else if (wasConnected.not() && hasNetworkConnectivity) {
+            showConnectivityOnSnackbar.postValue(Unit)
+            wasConnected = true
         }
     }
 }

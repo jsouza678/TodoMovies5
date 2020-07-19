@@ -1,4 +1,4 @@
-package com.souza.todomovies5
+package com.jsouza.todomovies5
 
 import android.app.Application
 import com.jsouza.moviedetail.di.dataModule

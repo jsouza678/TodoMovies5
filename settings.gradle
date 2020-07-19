@@ -1,3 +1,4 @@
+include ':core-components'
 include ':resource-components'
 include ':moviedetail'
 rootProject.name='TodoMovies5'
