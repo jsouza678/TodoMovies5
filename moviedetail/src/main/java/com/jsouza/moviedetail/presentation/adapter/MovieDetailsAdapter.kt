@@ -7,7 +7,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.jsouza.moviedetail.R
-import com.jsouza.moviedetail.data.todomovies.remote.response.SimilarMovies
+import com.jsouza.moviedetail.data.remote.response.SimilarMovies
 import com.jsouza.moviedetail.extensions.loadPosterImage
 import com.jsouza.moviedetail.utils.dateFormat
 

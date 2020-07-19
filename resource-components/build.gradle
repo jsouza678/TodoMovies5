@@ -66,4 +66,7 @@ dependencies {
     // Koin
     api "org.koin:koin-android:$koin_version"
     api "org.koin:koin-android-viewmodel:$koin_version"
+
+    // Logging Interceptor
+    api "com.squareup.okhttp3:logging-interceptor:$logging_interceptor_version"
 }

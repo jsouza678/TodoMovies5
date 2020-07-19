@@ -1,4 +1,4 @@
-package com.jsouza.moviedetail.data.todomovies.remote.response
+package com.jsouza.moviedetail.data.remote.response
 
 import com.jsouza.moviedetail.utils.Constants.Companion.IMAGE_BASE_URL
 import com.squareup.moshi.Json
@@ -18,7 +18,7 @@ data class SimilarMovies(
         val genresList = mutableListOf<String>()
         for (i in genres.indices) {
             genres[i].let { genre ->
-                when(genre) {
+                when (genre) {
                     28 -> genresList.add("Ação")
                     12 -> genresList.add("Aventura")
                     16 -> genresList.add("Animação")

@@ -4,8 +4,8 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import com.jsouza.moviedetail.R
-import com.jsouza.moviedetail.data.todomovies.remote.response.MovieDetailResponse
 import com.jsouza.moviedetail.databinding.ActivityMovieDetailsBinding
+import com.jsouza.moviedetail.domain.model.MovieDetail
 import com.jsouza.moviedetail.extensions.loadBackdropImage
 import com.jsouza.moviedetail.presentation.adapter.MovieDetailsAdapter
 import com.jsouza.moviedetail.utils.dateFormat
@@ -45,18 +45,20 @@ class MovieDetailsActivity : AppCompatActivity() {
             this.similarList.observe(this@MovieDetailsActivity, Observer {
                 adapter.submitList(it)
             })
-            this.movieDetail.observe(this@MovieDetailsActivity, Observer {
-                fillDetails(it)
+            this.returnMovieDetailOnLiveData().observe(this@MovieDetailsActivity, Observer {
+                it?.let {
+                    fillDetails(it)
+                }
             })
         }
     }
 
-    private fun fillDetails(movieDetail: MovieDetailResponse) {
-        binding.posterImageViewDetailActivity.loadBackdropImage(movieDetail.getImageUrl())
+    private fun fillDetails(movieDetail: MovieDetail) {
+        binding.posterImageViewDetailActivity.loadBackdropImage(movieDetail.posterImage)
         binding.titleMovieTextViewDetailActivity.text = movieDetail.title
         binding.movieDateTextViewDetailActivity.text = movieDetail.releaseDate?.let { dateFormat(it) }
         val duration = "${movieDetail.runtime} min"
         binding.movieDurationTextViewDetailActivity.text = duration
-        binding.genreMovieTextViewDetailActivity.text = movieDetail.getGenres()
+        binding.genreMovieTextViewDetailActivity.text = movieDetail.genres
     }
 }

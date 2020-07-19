@@ -1,4 +1,4 @@
-package com.jsouza.moviedetail.data.todomovies.remote.response
+package com.jsouza.moviedetail.data.remote.response
 
 import com.jsouza.moviedetail.utils.Constants
 import com.squareup.moshi.Json
