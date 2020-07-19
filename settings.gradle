@@ -1,2 +1,3 @@
+include ':moviedetail'
 rootProject.name='TodoMovies5'
 include ':app'

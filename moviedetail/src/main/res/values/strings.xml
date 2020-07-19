@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">TodoMovies5</string>
+
+    // Details Screen
+    <string name="content_description_poster_image_of_movie">Poster image of movie</string>
+
+    // Movie Item
+    <string name="mock_movie_title_list">Tenacious D : The Pick of the Destiny</string>
+    <string name="mock_movie_release_date_list">2002</string>
+    <string name="mock_movie_genre_list">Ação, Comédia, Música, Família</string>
+    <string name="mock_movie_duration_list">120 min</string>
+    <string name="content_description_love_details_activity">Love this movie!</string>
+
+</resources>
