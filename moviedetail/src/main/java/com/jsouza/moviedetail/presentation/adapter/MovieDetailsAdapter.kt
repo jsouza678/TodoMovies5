@@ -50,7 +50,7 @@ class MovieDetailsAdapter : RecyclerView.Adapter<MovieDetailsAdapter.ViewHolder>
         fun itemBind(movie: SimilarMovies) {
             movieTitle.text = movie.title
             movieReleaseDate.text = movie.releaseDate?.let { dateFormat(it) }
-            movieGenre.text = movie.genres.toString()
+            movieGenre.text = movie.getGenres()
             moviePoster.loadPosterImage(movie.getImageUrl())
         }
     }
