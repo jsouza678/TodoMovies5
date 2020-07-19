@@ -1,7 +1,7 @@
-package com.jsouza.moviedetail.data.remote
+package com.jsouza.moviedetail.data.moviedetails.remote
 
-import com.jsouza.moviedetail.data.remote.response.MovieDetailResponse
-import com.jsouza.moviedetail.data.remote.response.SimilarMoviesResponse
+import com.jsouza.moviedetail.data.moviedetails.remote.response.MovieDetailResponse
+import com.jsouza.moviedetail.data.similarmovies.remote.response.SimilarMoviesResponse
 import com.jsouza.moviedetail.utils.Constants.Companion.API_KEY
 import com.jsouza.moviedetail.utils.Constants.Companion.DEFAULT_LANGUAGE
 import kotlinx.coroutines.Deferred

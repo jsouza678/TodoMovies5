@@ -1,7 +1,7 @@
-package com.jsouza.moviedetail.data.mapper
+package com.jsouza.moviedetail.data.moviedetails.mapper
 
-import com.jsouza.moviedetail.data.local.entities.MovieDetailEntity
-import com.jsouza.moviedetail.data.remote.response.MovieDetailResponse
+import com.jsouza.moviedetail.data.moviedetails.local.entities.MovieDetailEntity
+import com.jsouza.moviedetail.data.moviedetails.remote.response.MovieDetailResponse
 import com.jsouza.moviedetail.domain.model.MovieDetail
 
 class MovieDetailMapper {

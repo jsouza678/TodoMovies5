@@ -1,11 +1,11 @@
-package com.jsouza.moviedetail.data.local.dao
+package com.jsouza.moviedetail.data.moviedetails.local.dao
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.jsouza.moviedetail.data.local.entities.MovieDetailEntity
+import com.jsouza.moviedetail.data.moviedetails.local.entities.MovieDetailEntity
 
 @Dao
 interface MovieDetailsDao {

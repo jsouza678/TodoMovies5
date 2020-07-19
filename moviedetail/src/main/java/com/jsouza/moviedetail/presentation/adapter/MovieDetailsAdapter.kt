@@ -7,7 +7,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.jsouza.moviedetail.R
-import com.jsouza.moviedetail.data.remote.response.SimilarMovies
+import com.jsouza.moviedetail.domain.model.SimilarMovies
 import com.jsouza.moviedetail.extensions.loadPosterImage
 import com.jsouza.moviedetail.utils.dateFormat
 
@@ -50,8 +50,8 @@ class MovieDetailsAdapter : RecyclerView.Adapter<MovieDetailsAdapter.ViewHolder>
         fun itemBind(movie: SimilarMovies) {
             movieTitle.text = movie.title
             movieReleaseDate.text = movie.releaseDate?.let { dateFormat(it) }
-            movieGenre.text = movie.getGenres()
-            moviePoster.loadPosterImage(movie.getImageUrl())
+            movieGenre.text = movie.genres
+            moviePoster.loadPosterImage(movie.posterPath)
         }
     }
 }

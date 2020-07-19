@@ -42,8 +42,10 @@ class MovieDetailsActivity : AppCompatActivity() {
 
     private fun initObserver(viewModel: MovieDetailsViewModel) {
         viewModel.apply {
-            this.similarList.observe(this@MovieDetailsActivity, Observer {
-                adapter.submitList(it)
+            this.returnSimilarMoviesOnLiveData().observe(this@MovieDetailsActivity, Observer {
+                it?.let {
+                    adapter.submitList(it)
+                }
             })
             this.returnMovieDetailOnLiveData().observe(this@MovieDetailsActivity, Observer {
                 it?.let {

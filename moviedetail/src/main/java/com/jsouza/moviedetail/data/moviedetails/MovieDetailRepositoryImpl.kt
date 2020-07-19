@@ -1,11 +1,11 @@
-package com.jsouza.moviedetail.data
+package com.jsouza.moviedetail.data.moviedetails
 
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
-import com.jsouza.moviedetail.data.local.dao.MovieDetailsDao
-import com.jsouza.moviedetail.data.mapper.MovieDetailMapper
-import com.jsouza.moviedetail.data.remote.MovieDetailService
+import com.jsouza.moviedetail.data.moviedetails.local.dao.MovieDetailsDao
+import com.jsouza.moviedetail.data.moviedetails.mapper.MovieDetailMapper
+import com.jsouza.moviedetail.data.moviedetails.remote.MovieDetailService
 import com.jsouza.moviedetail.domain.model.MovieDetail
 import com.jsouza.moviedetail.domain.repository.MovieDetailRepository
 import kotlinx.coroutines.Dispatchers

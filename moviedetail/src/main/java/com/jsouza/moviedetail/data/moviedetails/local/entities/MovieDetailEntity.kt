@@ -1,4 +1,4 @@
-package com.jsouza.moviedetail.data.local.entities
+package com.jsouza.moviedetail.data.moviedetails.local.entities
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

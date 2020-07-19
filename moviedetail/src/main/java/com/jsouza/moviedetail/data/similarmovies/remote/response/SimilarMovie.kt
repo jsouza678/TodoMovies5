@@ -1,9 +1,9 @@
-package com.jsouza.moviedetail.data.remote.response
+package com.jsouza.moviedetail.data.similarmovies.remote.response
 
 import com.jsouza.moviedetail.utils.Constants.Companion.IMAGE_BASE_URL
 import com.squareup.moshi.Json
 
-data class SimilarMovies(
+data class SimilarMovie(
     val id: Int,
     val title: String?,
     @Json(name = "genre_ids") val genres: List<Int> = emptyList(),

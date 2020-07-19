@@ -1,13 +1,13 @@
 package com.jsouza.moviedetail.domain.model
 
 data class MovieDetail(
-    val _id: Int,
-    val title: String?,
-    val genres: String?,
-    val releaseDate: String?,
-    val posterImage: String?,
-    val description: String?,
-    val runtime: Int?,
-    val popularity: Float?,
-    val voteCount: Int?
+    var _id: Int,
+    var title: String?,
+    var genres: String?,
+    var releaseDate: String?,
+    var posterImage: String?,
+    var description: String?,
+    var runtime: Int?,
+    var popularity: Float?,
+    var voteCount: Int?
 )
