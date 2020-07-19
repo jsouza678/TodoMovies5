@@ -8,8 +8,10 @@ import com.jsouza.moviedetail.domain.model.MovieDetail
 import com.jsouza.moviedetail.domain.model.SimilarMovies
 import com.jsouza.moviedetail.domain.usecase.FetchMovieDetailsFromApi
 import com.jsouza.moviedetail.domain.usecase.FetchSimilarMoviesFromApi
+import com.jsouza.moviedetail.domain.usecase.GetIsFavoriteMovie
 import com.jsouza.moviedetail.domain.usecase.GetMovieDetailsFromDatabase
 import com.jsouza.moviedetail.domain.usecase.GetSimilarMoviesFromDatabase
+import com.jsouza.moviedetail.domain.usecase.SetIsFavoriteMovie
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
@@ -17,7 +19,9 @@ class MovieDetailsViewModel(
     private val fetchMovieDetailsFromApi: FetchMovieDetailsFromApi,
     private val getMovieDetailsFromDatabase: GetMovieDetailsFromDatabase,
     private val fetchSimilarMoviesFromApi: FetchSimilarMoviesFromApi,
-    private val getSimilarMoviesFromDatabase: GetSimilarMoviesFromDatabase
+    private val getSimilarMoviesFromDatabase: GetSimilarMoviesFromDatabase,
+    private val setIsFavoriteMovie: SetIsFavoriteMovie,
+    private val getIsFavoriteMovie: GetIsFavoriteMovie
 ) : ViewModel() {
 
     companion object {
@@ -36,10 +40,23 @@ class MovieDetailsViewModel(
         }
     }
 
-    fun showConnectivityOnSnackbar(): LiveData<Unit> = showConnectivityOnSnackbar
-    fun showConnectivityOffSnackbar(): LiveData<Unit> = showConnectivityOffSnackbar
-    fun returnMovieDetailOnLiveData(): LiveData<MovieDetail?> = getMovieDetailsFromDatabase.invoke(76341)
-    fun returnSimilarMoviesOnLiveData(): LiveData<List<SimilarMovies>?> = getSimilarMoviesFromDatabase.invoke()
+    fun showConnectivityOnSnackbar(): LiveData<Unit> =
+        showConnectivityOnSnackbar
+
+    fun showConnectivityOffSnackbar(): LiveData<Unit> =
+        showConnectivityOffSnackbar
+
+    fun returnMovieDetailOnLiveData(): LiveData<MovieDetail?> =
+        getMovieDetailsFromDatabase.invoke(76341)
+
+    fun showSimilarMoviesOnLiveData(): LiveData<List<SimilarMovies>?> =
+        getSimilarMoviesFromDatabase.invoke()
+
+    fun getIsFavoriteMovieFromCache(): Boolean =
+        getIsFavoriteMovie()
+
+    fun setMovieAsFavoriteOnCache(isFavoriteMovie: Boolean) =
+        setIsFavoriteMovie(isFavoriteMovie)
 
     fun mustShowConnectivitySnackbar(hasNetworkConnectivity: Boolean) {
         if (hasNetworkConnectivity.not()) {

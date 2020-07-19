@@ -3,6 +3,7 @@ package com.jsouza.todomovies5
 import android.app.Application
 import com.jsouza.moviedetail.di.dataModule
 import com.jsouza.moviedetail.di.detailModule
+import com.jsouza.moviedetail.di.favoriteMoviesModule
 import com.jsouza.moviedetail.di.serviceModule
 import com.jsouza.moviedetail.di.similarMoviesModule
 import org.koin.android.BuildConfig
@@ -25,7 +26,8 @@ class Application : Application() {
                     detailModule,
                     similarMoviesModule,
                     serviceModule,
-                    dataModule
+                    dataModule,
+                    favoriteMoviesModule
                 )
             )
         }

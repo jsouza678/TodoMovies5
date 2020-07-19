@@ -1,4 +1,4 @@
-package com.jsouza.moviedetail.data.moviedetails.local
+package com.jsouza.moviedetail.data.local
 
 import androidx.room.Database
 import androidx.room.RoomDatabase

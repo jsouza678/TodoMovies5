@@ -7,7 +7,7 @@
         app:constraintSetStart="@id/expanded">
         <OnSwipe
             app:dragDirection="dragUp"
-            app:touchAnchorId="@id/default_container"
+            app:touchAnchorId="@id/movie_details_constraint_layout_detail_activity"
             app:touchAnchorSide="top" />
     </Transition>
 

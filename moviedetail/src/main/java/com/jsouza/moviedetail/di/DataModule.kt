@@ -1,7 +1,7 @@
 package com.jsouza.moviedetail.di
 
 import androidx.room.Room
-import com.jsouza.moviedetail.data.moviedetails.local.MovieDetailDatabase
+import com.jsouza.moviedetail.data.local.MovieDetailDatabase
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
