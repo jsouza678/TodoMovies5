@@ -7,7 +7,7 @@
         app:constraintSetStart="@id/expanded">
         <OnSwipe
             app:dragDirection="dragUp"
-            app:touchAnchorId="@id/movie_details_constraint_layout_detail_activity"
+            app:touchAnchorId="@id/movie_details_swipe_layout_detail_activity"
             app:touchAnchorSide="top" />
     </Transition>
 
@@ -23,6 +23,7 @@
 
     <ConstraintSet android:id="@+id/collapsed">
         <Constraint
+            android:layout_width="match_parent"
             android:id="@id/diagonal_container_poster_detail_activity"
             android:layout_height="?attr/actionBarSize"
             app:layout_constraintEnd_toEndOf="parent"

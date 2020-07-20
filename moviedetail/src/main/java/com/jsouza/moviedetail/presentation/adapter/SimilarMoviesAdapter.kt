@@ -3,15 +3,20 @@ package com.jsouza.moviedetail.presentation.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.jsouza.moviedetail.R
+import com.jsouza.moviedetail.databinding.EmptyMoviesListBinding
+import com.jsouza.moviedetail.databinding.MovieListItemBinding
 import com.jsouza.moviedetail.domain.model.SimilarMovies
 import com.jsouza.moviedetail.extensions.loadPosterImage
 import com.jsouza.moviedetail.utils.dateFormat
 
 class SimilarMoviesAdapter : RecyclerView.Adapter<SimilarMoviesAdapter.ViewHolder>() {
+
+    companion object {
+        private const val VIEW_TYPE_EMPTY_LIST_PLACEHOLDER = 0
+        private const val VIEW_TYPE_OBJECT_VIEW = 1
+    }
 
     private val movies = mutableListOf<SimilarMovies>()
 
@@ -24,21 +29,39 @@ class SimilarMoviesAdapter : RecyclerView.Adapter<SimilarMoviesAdapter.ViewHolde
         movies.addAll(newData)
         notifyDataSetChanged()
     }
+
+    override fun getItemViewType(position: Int): Int {
+        return if (movies.isEmpty()) {
+            VIEW_TYPE_EMPTY_LIST_PLACEHOLDER
+        } else {
+            VIEW_TYPE_OBJECT_VIEW
+        }
+    }
+
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
     ): ViewHolder {
-        val view = LayoutInflater
-            .from(parent.context)
-            .inflate(
-                R.layout.movie_list_item,
-                parent,
-                false)
+        val view = when (viewType) {
+            VIEW_TYPE_OBJECT_VIEW -> LayoutInflater
+                .from(parent.context)
+                .inflate(
+                    R.layout.movie_list_item,
+                    parent,
+                    false)
+            else -> LayoutInflater
+                .from(parent.context)
+                .inflate(
+                    R.layout.empty_movies_list,
+                    parent,
+                    false)
+        }
 
         return ViewHolder(view)
     }
 
     override fun getItemCount(): Int {
+        if (movies.size == 0) return 1
         return movies.size
     }
 
@@ -46,24 +69,30 @@ class SimilarMoviesAdapter : RecyclerView.Adapter<SimilarMoviesAdapter.ViewHolde
         holder: ViewHolder,
         position: Int
     ) {
-        holder.itemBind(movies[position])
+        when (getItemViewType(position)) {
+            VIEW_TYPE_OBJECT_VIEW -> holder.itemBind(movies[position])
+            VIEW_TYPE_EMPTY_LIST_PLACEHOLDER -> {
+            }
+        }
     }
 
     inner class ViewHolder(
         itemView: View
     ) : RecyclerView.ViewHolder(itemView) {
-        private val movieTitle: TextView = itemView.findViewById(R.id.title_text_view_movie_list_item)
-        private val movieReleaseDate: TextView = itemView.findViewById(R.id.release_date_text_view_movie_list_item)
-        private val movieGenre: TextView = itemView.findViewById(R.id.genre_text_view_movie_list_item)
-        private val moviePoster: ImageView = itemView.findViewById(R.id.poster_image_view_movie_list_item)
+
+        fun onListEmpty() {
+            val bindingEmptyList = EmptyMoviesListBinding.bind(itemView)
+        }
 
         fun itemBind(
             movie: SimilarMovies
         ) {
-            movieTitle.text = movie.title
-            movieReleaseDate.text = movie.releaseDate?.let { dateFormat(it) }
-            movieGenre.text = movie.genres
-            moviePoster.loadPosterImage(movie.posterPath)
+            val bindingMovieList = MovieListItemBinding.bind(itemView)
+
+            bindingMovieList.titleTextViewMovieListItem.text = movie.title
+            bindingMovieList.releaseDateTextViewMovieListItem.text = movie.releaseDate?.let { dateFormat(it) }
+            bindingMovieList.genreTextViewMovieListItem.text = movie.genres
+            bindingMovieList.posterImageViewMovieListItem.loadPosterImage(movie.posterPath)
         }
     }
 }

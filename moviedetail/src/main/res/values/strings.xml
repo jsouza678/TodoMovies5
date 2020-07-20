@@ -17,5 +17,8 @@
     <string name="dot_separator_date_duration">•</string>
     <string name="mock_likes_movie">123.252 likes</string>
     <string name="mock_popularity_movie">123.252</string>
+    <string name="error_message_no_movies">Não foi possível carregar os filmes. \nDeslize para baixo para tentar novamente</string>
+    <string name="retry_load_movies_button_label">Tentar Novamente</string>
+    <string name="content_description_sad_popcorn_empty_list">Pipoca triste por não ter nenhum filme</string>
 
 </resources>

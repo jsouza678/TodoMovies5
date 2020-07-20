@@ -15,7 +15,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:fel_edge="bottom"
-        app:fel_size_bottom="50dp"
+        app:fel_size_bottom="@dimen/bottom_size_fade_edge"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -24,16 +24,17 @@
         <ImageView
             android:id="@+id/poster_image_view_detail_activity"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:adjustViewBounds="true"
+            android:layout_height="@dimen/default_backdrop_image_height"
+            android:scaleType="matrix"
+            android:adjustViewBounds="false"
             android:contentDescription="@string/content_description_poster_image_of_movie"
             android:layout_centerInParent="true"
-            tools:src="@drawable/poster_mock" />
+            tools:src="@drawable/backdrop_path" />
 
     </com.bosphere.fadingedgelayout.FadingEdgeLayout>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/movie_details_constraint_layout_detail_activity"
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/movie_details_swipe_layout_detail_activity"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintTop_toBottomOf="@id/diagonal_container_poster_detail_activity"
@@ -41,120 +42,133 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent">
 
-        <TextView
-            android:id="@+id/movie_date_text_view_detail_activity"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            tools:text="@string/mock_movie_release_date_list"
-            android:textAllCaps="true"
-            android:textAlignment="textStart"
-            android:layout_marginStart="@dimen/material_default_margin_8dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            style="@style/default_movie_title"/>
-
-        <TextView
-            android:id="@+id/dot_separator_text_view_movie_detail_activity"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="@string/dot_separator_date_duration"
-            android:textAllCaps="true"
-            android:textAlignment="textStart"
-            android:layout_marginStart="@dimen/material_default_margin_8dp"
-            app:layout_constraintStart_toEndOf="@id/movie_date_text_view_detail_activity"
-            app:layout_constraintTop_toTopOf="parent"
-            style="@style/default_movie_title"/>
-
-        <TextView
-            android:id="@+id/movie_duration_text_view_detail_activity"
-            style="@style/default_movie_title"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:textAlignment="textStart"
-            android:textAllCaps="true"
-            android:layout_marginStart="@dimen/material_default_margin_8dp"
-            app:layout_constraintStart_toEndOf="@id/dot_separator_text_view_movie_detail_activity"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="@string/mock_movie_duration_list" />
-
-        <TextView
-            android:id="@+id/title_movie_text_view_detail_activity"
-            style="@style/default_movie_title"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:textAlignment="viewStart"
-            android:textAllCaps="true"
-            android:textSize="18sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/movie_duration_text_view_detail_activity"
-            tools:text="@string/mock_movie_title_list" />
-
-        <TextView
-            android:id="@+id/likes_count_movie_text_view_detail_activity"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            tools:text="@string/mock_likes_movie"
-            android:layout_marginEnd="@dimen/material_default_margin_8dp"
-            app:layout_constraintBaseline_toBaselineOf="@id/movie_duration_text_view_detail_activity"
-            app:layout_constraintEnd_toStartOf="@id/favorite_movie_toggle_button_detail_activity"
-            style="@style/default_movie_title"/>
-
-        <ToggleButton
-            android:id="@+id/favorite_movie_toggle_button_detail_activity"
-            android:layout_width="@dimen/favorite_button_width"
-            android:layout_height="@dimen/favorite_button_height"
-            android:background="@drawable/toggle_favorite_button"
-            android:textOff=""
-            android:textOn=""
-            android:layout_marginEnd="@dimen/material_default_margin_8dp"
-            app:layout_constraintBaseline_toBaselineOf="@id/likes_count_movie_text_view_detail_activity"
-            app:layout_constraintEnd_toEndOf="parent" />
-
-        <TextView
-            android:id="@+id/genre_movie_text_view_detail_activity"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:textAlignment="viewStart"
-            tools:text="@string/mock_movie_genre_list"
-            android:fontFamily="@font/ubuntu_regular"
-            android:textColor="@color/secondary_text_color"
-            android:layout_marginTop="@dimen/material_default_margin_8dp"
-            android:layout_marginStart="@dimen/material_default_margin_8dp"
-            android:layout_marginEnd="@dimen/material_default_margin_8dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/title_movie_text_view_detail_activity" />
-
-        <ProgressBar
-            android:id="@+id/popularity_progress_bar_detail_activity"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:textAlignment="viewEnd"
-            tools:progress="32"
-            android:max="40"
-            android:progressTint="@color/colorAccent"
-            android:layout_marginTop="@dimen/material_default_margin_8dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/genre_movie_text_view_detail_activity"
-            style="@style/Widget.AppCompat.ProgressBar.Horizontal"/>
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/similar_recycler_view_detail_activity"
-            android:layout_width="0dp"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/movie_details_constraint_layout_detail_activity"
+            android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:visibility="visible"
-            tools:itemCount="2"
-            tools:listitem="@layout/movie_list_item"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            android:layout_marginStart="@dimen/material_default_margin_8dp"
-            android:layout_marginEnd="@dimen/material_default_margin_8dp"
-            android:layout_marginBottom="@dimen/material_default_margin_8dp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/diagonal_container_poster_detail_activity"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/popularity_progress_bar_detail_activity"/>
+            app:layout_constraintBottom_toBottomOf="parent">
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:id="@+id/movie_date_text_view_detail_activity"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                tools:text="@string/mock_movie_release_date_list"
+                android:textAllCaps="true"
+                android:textAlignment="textStart"
+                android:layout_marginStart="@dimen/material_default_margin_8dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                style="@style/default_movie_title"/>
+
+            <TextView
+                android:id="@+id/dot_separator_text_view_movie_detail_activity"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/dot_separator_date_duration"
+                android:visibility="invisible"
+                android:textAllCaps="true"
+                android:textAlignment="textStart"
+                android:layout_marginStart="@dimen/material_default_margin_8dp"
+                app:layout_constraintStart_toEndOf="@id/movie_date_text_view_detail_activity"
+                app:layout_constraintTop_toTopOf="parent"
+                style="@style/default_movie_title"/>
+
+            <TextView
+                android:id="@+id/movie_duration_text_view_detail_activity"
+                style="@style/default_movie_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textAlignment="textStart"
+                android:textAllCaps="true"
+                android:layout_marginStart="@dimen/material_default_margin_8dp"
+                app:layout_constraintStart_toEndOf="@id/dot_separator_text_view_movie_detail_activity"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="@string/mock_movie_duration_list" />
+
+            <TextView
+                android:id="@+id/title_movie_text_view_detail_activity"
+                style="@style/default_movie_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textAlignment="viewStart"
+                android:textAllCaps="true"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/movie_duration_text_view_detail_activity"
+                tools:text="@string/mock_movie_title_list" />
+
+            <TextView
+                android:id="@+id/likes_count_movie_text_view_detail_activity"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                tools:text="@string/mock_likes_movie"
+                android:layout_marginEnd="@dimen/material_default_margin_8dp"
+                app:layout_constraintBaseline_toBaselineOf="@id/movie_duration_text_view_detail_activity"
+                app:layout_constraintEnd_toStartOf="@id/favorite_movie_toggle_button_detail_activity"
+                style="@style/default_movie_title"/>
+
+            <ToggleButton
+                android:id="@+id/favorite_movie_toggle_button_detail_activity"
+                android:layout_width="@dimen/favorite_button_width"
+                android:layout_height="@dimen/favorite_button_height"
+                android:visibility="invisible"
+                android:background="@drawable/toggle_favorite_button"
+                android:textOff=""
+                android:textOn=""
+                android:layout_marginEnd="@dimen/material_default_margin_8dp"
+                app:layout_constraintBaseline_toBaselineOf="@id/likes_count_movie_text_view_detail_activity"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <TextView
+                android:id="@+id/genre_movie_text_view_detail_activity"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textAlignment="viewStart"
+                tools:text="@string/mock_movie_genre_list"
+                android:fontFamily="@font/ubuntu_regular"
+                android:textColor="@color/secondary_text_color"
+                android:layout_marginTop="@dimen/material_default_margin_8dp"
+                android:layout_marginStart="@dimen/material_default_margin_8dp"
+                android:layout_marginEnd="@dimen/material_default_margin_8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/title_movie_text_view_detail_activity" />
+
+            <ProgressBar
+                android:id="@+id/popularity_progress_bar_detail_activity"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textAlignment="viewEnd"
+                tools:progress="32"
+                android:max="40"
+                android:visibility="invisible"
+                android:progressTint="@color/colorAccent"
+                android:layout_marginTop="@dimen/material_default_margin_8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/genre_movie_text_view_detail_activity"
+                style="@style/Widget.AppCompat.ProgressBar.Horizontal"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/similar_recycler_view_detail_activity"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                tools:itemCount="2"
+                tools:listitem="@layout/movie_list_item"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                android:layout_marginStart="@dimen/material_default_margin_8dp"
+                android:layout_marginEnd="@dimen/material_default_margin_8dp"
+                android:layout_marginBottom="@dimen/material_default_margin_8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/popularity_progress_bar_detail_activity"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 </androidx.constraintlayout.motion.widget.MotionLayout>

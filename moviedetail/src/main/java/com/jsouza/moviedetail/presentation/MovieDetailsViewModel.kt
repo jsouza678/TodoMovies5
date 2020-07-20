@@ -28,6 +28,7 @@ class MovieDetailsViewModel(
     private var wasConnected = true
     private var showConnectivityOnSnackbar = MutableLiveData<Unit>()
     private var showConnectivityOffSnackbar = MutableLiveData<Unit>()
+    private val notConnectedToInternet = MutableLiveData<Unit>()
     private val coroutineScope = Dispatchers.IO
 
     init {
@@ -60,10 +61,18 @@ class MovieDetailsViewModel(
     ) {
         if (hasNetworkConnectivity.not()) {
             showConnectivityOffSnackbar.postValue(Unit)
+            notConnectedToInternet.postValue(Unit)
             wasConnected = false
         } else if (wasConnected.not() && hasNetworkConnectivity) {
             showConnectivityOnSnackbar.postValue(Unit)
             wasConnected = true
+        }
+    }
+
+    fun refreshMovies() {
+        viewModelScope.launch(context = coroutineScope) {
+            fetchMovieDetailsFromApi(MOVIE_ID)
+            fetchSimilarMoviesFromApi(MOVIE_ID)
         }
     }
 }

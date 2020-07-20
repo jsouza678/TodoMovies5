@@ -1,6 +1,7 @@
 package com.jsouza.moviedetail.presentation
 
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
@@ -29,15 +30,24 @@ class MovieDetailsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMovieDetailsBinding.inflate(layoutInflater)
-        setContentView(binding.root)
 
+        setupSwipeRefresh()
         initConnectivityCallback()
         initConnectivityObserver()
-        initConnectivitySnackbar()
         setupRecyclerView()
         isFavoriteMovie()
         setupFavoriteButton()
         initMovieDataObservers()
+
+        setContentView(binding.root)
+        initConnectivitySnackbar()
+    }
+
+    private fun setupSwipeRefresh() {
+        binding.movieDetailsSwipeLayoutDetailActivity.setOnRefreshListener {
+            viewModel.refreshMovies()
+            binding.movieDetailsSwipeLayoutDetailActivity.isRefreshing = false
+        }
     }
 
     private fun initConnectivityObserver() {
@@ -61,6 +71,48 @@ class MovieDetailsActivity : AppCompatActivity() {
         }
     }
 
+    private fun initMovieDataObservers() {
+        viewModel.apply {
+            this.showSimilarMoviesOnLiveData().observe(this@MovieDetailsActivity,
+                Observer {
+                    it?.let {
+                        adapter.submitList(it)
+                    }
+                })
+            this.returnMovieDetailOnLiveData().observe(this@MovieDetailsActivity,
+                Observer {
+                    it?.let {
+                        fillDetails(it)
+                    }
+                })
+        }
+    }
+
+    private fun fillDetails(
+        movieDetail: MovieDetail
+    ) {
+        binding.popularityProgressBarDetailActivity.visibility = View.VISIBLE
+        binding.dotSeparatorTextViewMovieDetailActivity.visibility = View.VISIBLE
+        binding.favoriteMovieToggleButtonDetailActivity.visibility = View.VISIBLE
+
+        val likesCount = "${movieDetail.voteCount} ${getString(R.string.votes_count_label)}"
+        binding.likesCountMovieTextViewDetailActivity.text = likesCount
+
+        val popularityToDisplayOnProgressBar = movieDetail.popularity?.roundToInt()
+        binding.popularityProgressBarDetailActivity.progress =
+            popularityToDisplayOnProgressBar ?: ABSOLUTE_ZERO
+
+        binding.posterImageViewDetailActivity.loadBackdropImage(movieDetail.posterImage)
+        binding.titleMovieTextViewDetailActivity.text = movieDetail.title
+        binding.movieDateTextViewDetailActivity.text = movieDetail.releaseDate?.let {
+            dateFormat(it)
+        }
+        val duration = "${movieDetail.runtime} ${getString(R.string.minutes_duration_label)}"
+        binding.movieDurationTextViewDetailActivity.text = duration
+
+        binding.genreMovieTextViewDetailActivity.text = movieDetail.genres
+    }
+
     private fun initConnectivityCallback() {
         checkConnectivity = Connectivity(application)
     }
@@ -68,14 +120,13 @@ class MovieDetailsActivity : AppCompatActivity() {
     private fun initConnectivitySnackbar() {
         connectivitySnackbar =
             Snackbar.make(
-                binding.movieDetailsConstraintLayoutDetailActivity,
+                binding.movieDetailsSwipeLayoutDetailActivity,
                 getString(R.string.snackbar_message_internet_back),
-                Snackbar.LENGTH_INDEFINITE
+                Snackbar.LENGTH_SHORT
             )
     }
 
     private fun showConnectivityOnSnackbar() {
-        connectivitySnackbar.duration = Snackbar.LENGTH_SHORT
         connectivitySnackbar
             .view.setBackgroundColor(
                 ContextCompat
@@ -86,7 +137,6 @@ class MovieDetailsActivity : AppCompatActivity() {
     }
 
     private fun showConnectivityOffSnackbar() {
-        connectivitySnackbar.duration = Snackbar.LENGTH_INDEFINITE
         connectivitySnackbar
             .view
             .setBackgroundColor(
@@ -109,48 +159,10 @@ class MovieDetailsActivity : AppCompatActivity() {
     private fun setupFavoriteButton() {
         binding.favoriteMovieToggleButtonDetailActivity
             .setOnCheckedChangeListener { _, isFavorite ->
-            when (isFavorite) {
-                true -> viewModel.setMovieAsFavoriteOnCache(true)
-                false -> viewModel.setMovieAsFavoriteOnCache(false)
+                when (isFavorite) {
+                    true -> viewModel.setMovieAsFavoriteOnCache(true)
+                    false -> viewModel.setMovieAsFavoriteOnCache(false)
+                }
             }
-        }
-    }
-
-    private fun initMovieDataObservers() {
-        viewModel.apply {
-            this.showSimilarMoviesOnLiveData().observe(this@MovieDetailsActivity,
-                Observer {
-                    it?.let {
-                        adapter.submitList(it)
-                    }
-                })
-            this.returnMovieDetailOnLiveData().observe(this@MovieDetailsActivity,
-                Observer {
-                    it?.let {
-                        fillDetails(it)
-                    }
-                })
-        }
-    }
-
-    private fun fillDetails(
-        movieDetail: MovieDetail
-    ) {
-        val likesCount = "${movieDetail.voteCount} ${getString(R.string.votes_count_label)}"
-        binding.likesCountMovieTextViewDetailActivity.text = likesCount
-
-        val popularityToDisplayOnProgressBar = movieDetail.popularity?.roundToInt()
-        binding.popularityProgressBarDetailActivity.progress =
-            popularityToDisplayOnProgressBar ?: ABSOLUTE_ZERO
-
-        binding.posterImageViewDetailActivity.loadBackdropImage(movieDetail.posterImage)
-        binding.titleMovieTextViewDetailActivity.text = movieDetail.title
-        binding.movieDateTextViewDetailActivity.text = movieDetail.releaseDate?.let {
-            dateFormat(it)
-        }
-        val duration = "${movieDetail.runtime} ${getString(R.string.minutes_duration_label)}"
-        binding.movieDurationTextViewDetailActivity.text = duration
-
-        binding.genreMovieTextViewDetailActivity.text = movieDetail.genres
     }
 }
