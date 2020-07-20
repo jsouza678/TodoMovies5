@@ -19,7 +19,9 @@ import io.mockk.runs
 import io.mockk.spyk
 import io.mockk.unmockkAll
 import io.mockk.verify
+import org.junit.After
 import org.junit.Assert
+import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 
@@ -31,12 +33,12 @@ class MovieDetailsViewModelTest {
     private val movieDetail = mockkClass(MovieDetail::class)
     private val similarMoviesList = mockkClass(SimilarMovies::class)
 
-    @org.junit.Before
+    @Before
     fun setUp() {
         MockKAnnotations.init(this)
     }
 
-    @org.junit.After
+    @After
     fun tearDown() {
         unmockkAll()
     }

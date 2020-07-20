@@ -71,9 +71,6 @@ class MovieDetailsViewModel(
     }
 
     fun refreshMovies() {
-        viewModelScope.launch(context = coroutineScope) {
-            fetchMovieDetailsFromApi(MOVIE_ID)
-            fetchSimilarMoviesFromApi(MOVIE_ID)
-        }
+        loadMovies()
     }
 }

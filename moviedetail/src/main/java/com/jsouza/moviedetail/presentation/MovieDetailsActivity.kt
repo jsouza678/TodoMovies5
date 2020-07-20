@@ -31,16 +31,16 @@ class MovieDetailsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMovieDetailsBinding.inflate(layoutInflater)
 
+        setupRecyclerView()
         viewModel.loadMovies()
-        setupSwipeRefresh()
+        initMovieDataObservers()
         initConnectivityCallback()
         initConnectivityObserver()
-        setupRecyclerView()
         isFavoriteMovie()
         setupFavoriteButton()
-        initMovieDataObservers()
 
         setContentView(binding.root)
+        setupSwipeRefresh()
         initConnectivitySnackbar()
     }
 
@@ -55,7 +55,6 @@ class MovieDetailsActivity : AppCompatActivity() {
         checkConnectivity.observe(this@MovieDetailsActivity,
             Observer { hasNetworkConnectivity ->
                 this.hasNetworkConnectivity = hasNetworkConnectivity
-
                 viewModel.updateConnectivityStatus(hasNetworkConnectivity)
             })
 
@@ -76,9 +75,7 @@ class MovieDetailsActivity : AppCompatActivity() {
         viewModel.apply {
             this.showSimilarMoviesOnLiveData().observe(this@MovieDetailsActivity,
                 Observer {
-                    it?.let {
-                        adapter.submitList(it)
-                    }
+                    adapter.submitList(it)
                 })
             this.returnMovieDetailOnLiveData().observe(this@MovieDetailsActivity,
                 Observer {
