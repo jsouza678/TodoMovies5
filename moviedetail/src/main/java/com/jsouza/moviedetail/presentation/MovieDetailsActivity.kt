@@ -11,7 +11,9 @@ import com.jsouza.moviedetail.databinding.ActivityMovieDetailsBinding
 import com.jsouza.moviedetail.domain.model.MovieDetail
 import com.jsouza.moviedetail.extensions.loadBackdropImage
 import com.jsouza.moviedetail.presentation.adapter.SimilarMoviesAdapter
+import com.jsouza.moviedetail.utils.Constants.Companion.ABSOLUTE_ZERO
 import com.jsouza.moviedetail.utils.dateFormat
+import kotlin.math.roundToInt
 import org.koin.android.ext.android.inject
 import org.koin.android.viewmodel.ext.android.viewModel
 
@@ -134,13 +136,21 @@ class MovieDetailsActivity : AppCompatActivity() {
     private fun fillDetails(
         movieDetail: MovieDetail
     ) {
+        val likesCount = "${movieDetail.voteCount} ${getString(R.string.votes_count_label)}"
+        binding.likesCountMovieTextViewDetailActivity.text = likesCount
+
+        val popularityToDisplayOnProgressBar = movieDetail.popularity?.roundToInt()
+        binding.popularityProgressBarDetailActivity.progress =
+            popularityToDisplayOnProgressBar ?: ABSOLUTE_ZERO
+
         binding.posterImageViewDetailActivity.loadBackdropImage(movieDetail.posterImage)
         binding.titleMovieTextViewDetailActivity.text = movieDetail.title
         binding.movieDateTextViewDetailActivity.text = movieDetail.releaseDate?.let {
             dateFormat(it)
         }
-        val duration = "${movieDetail.runtime} min"
+        val duration = "${movieDetail.runtime} ${getString(R.string.minutes_duration_label)}"
         binding.movieDurationTextViewDetailActivity.text = duration
+
         binding.genreMovieTextViewDetailActivity.text = movieDetail.genres
     }
 }

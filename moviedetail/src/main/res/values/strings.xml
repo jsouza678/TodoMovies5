@@ -1,6 +1,8 @@
 <resources>
     // Details Screen
     <string name="content_description_poster_image_of_movie">Poster do filme</string>
+    <string name="minutes_duration_label">min</string>
+    <string name="votes_count_label">votos</string>
 
     // Movie Item
     <string name="mock_movie_title_list">Tenacious D : The Pick of the Destiny</string>
@@ -12,5 +14,8 @@
     // Connectivity
     <string name="snackbar_message_internet_back">Sua conexão está de volta :)</string>
     <string name="snackbar_internet_off">Sem internet! Trabalhando offline </string>
+    <string name="dot_separator_date_duration">•</string>
+    <string name="mock_likes_movie">123.252 likes</string>
+    <string name="mock_popularity_movie">123.252</string>
 
 </resources>

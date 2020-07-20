@@ -45,4 +45,7 @@ dependencies {
 
     // AndroidX Preferences
     implementation "androidx.preference:preference:$androidx_preference_version"
+
+    // Fading Edge Layout
+    implementation "com.github.bosphere.android-fadingedgelayout:fadingedgelayout:$fading_edge_layout_version"
 }

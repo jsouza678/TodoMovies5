@@ -2,6 +2,7 @@ package com.jsouza.moviedetail.extensions
 
 import android.graphics.drawable.Drawable
 import android.widget.ImageView
+import com.bumptech.glide.GenericTransitionOptions
 import com.bumptech.glide.Glide
 import com.bumptech.glide.RequestBuilder
 import com.bumptech.glide.load.DataSource
@@ -38,7 +39,6 @@ fun ImageView.loadBackdropImage(url: String? = null) {
 
     placeHolderId.let {
         requestBuilder
-            .placeholder(placeHolderId)
             .error(errorImageId)
     }
 
@@ -55,6 +55,7 @@ private fun setupGlide(
 
     return Glide.with(imageView)
         .`as`(Drawable::class.java)
+        .transition(GenericTransitionOptions.with(R.anim.fade_in))
         .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
         .listener(object : RequestListener<Drawable> {
             override fun onLoadFailed(

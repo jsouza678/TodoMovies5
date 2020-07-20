@@ -12,6 +12,7 @@ import com.jsouza.moviedetail.domain.usecase.GetIsFavoriteMovie
 import com.jsouza.moviedetail.domain.usecase.GetMovieDetailsFromDatabase
 import com.jsouza.moviedetail.domain.usecase.GetSimilarMoviesFromDatabase
 import com.jsouza.moviedetail.domain.usecase.SetIsFavoriteMovie
+import com.jsouza.moviedetail.utils.Constants.Companion.MOVIE_ID
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
@@ -23,10 +24,6 @@ class MovieDetailsViewModel(
     private val setIsFavoriteMovie: SetIsFavoriteMovie,
     private val getIsFavoriteMovie: GetIsFavoriteMovie
 ) : ViewModel() {
-
-    companion object {
-        private const val MOVIE_ID = 76341
-    }
 
     private var wasConnected = true
     private var showConnectivityOnSnackbar = MutableLiveData<Unit>()
