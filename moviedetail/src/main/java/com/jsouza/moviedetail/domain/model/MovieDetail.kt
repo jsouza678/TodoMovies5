@@ -1,7 +1,7 @@
 package com.jsouza.moviedetail.domain.model
 
 data class MovieDetail(
-    var _id: Int,
+    var id: Int,
     var title: String?,
     var genres: String?,
     var releaseDate: String?,

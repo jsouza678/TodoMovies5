@@ -27,7 +27,7 @@ class MovieDetailMapper {
             entity: MovieDetailEntity
         ): MovieDetail {
             return MovieDetail(
-                _id = entity._id,
+                id = entity._id,
                 title = entity.title,
                 genres = entity.genres,
                 releaseDate = entity.releaseDate,

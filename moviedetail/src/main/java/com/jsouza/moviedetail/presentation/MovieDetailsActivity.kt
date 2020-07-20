@@ -31,6 +31,7 @@ class MovieDetailsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMovieDetailsBinding.inflate(layoutInflater)
 
+        viewModel.loadMovies()
         setupSwipeRefresh()
         initConnectivityCallback()
         initConnectivityObserver()
@@ -55,7 +56,7 @@ class MovieDetailsActivity : AppCompatActivity() {
             Observer { hasNetworkConnectivity ->
                 this.hasNetworkConnectivity = hasNetworkConnectivity
 
-                viewModel.mustShowConnectivitySnackbar(hasNetworkConnectivity)
+                viewModel.updateConnectivityStatus(hasNetworkConnectivity)
             })
 
         viewModel.apply {

@@ -17,21 +17,22 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class MovieDetailsViewModel(
-    private val fetchMovieDetailsFromApi: FetchMovieDetailsFromApi,
-    private val getMovieDetailsFromDatabase: GetMovieDetailsFromDatabase,
-    private val fetchSimilarMoviesFromApi: FetchSimilarMoviesFromApi,
-    private val getSimilarMoviesFromDatabase: GetSimilarMoviesFromDatabase,
-    private val setIsFavoriteMovie: SetIsFavoriteMovie,
-    private val getIsFavoriteMovie: GetIsFavoriteMovie
+    internal val fetchMovieDetailsFromApi: FetchMovieDetailsFromApi,
+    internal val getMovieDetailsFromDatabase: GetMovieDetailsFromDatabase,
+    internal val fetchSimilarMoviesFromApi: FetchSimilarMoviesFromApi,
+    internal val getSimilarMoviesFromDatabase: GetSimilarMoviesFromDatabase,
+    internal val setIsFavoriteMovie: SetIsFavoriteMovie,
+    internal val getIsFavoriteMovie: GetIsFavoriteMovie
 ) : ViewModel() {
 
-    private var wasConnected = true
-    private var showConnectivityOnSnackbar = MutableLiveData<Unit>()
-    private var showConnectivityOffSnackbar = MutableLiveData<Unit>()
-    private val notConnectedToInternet = MutableLiveData<Unit>()
-    private val coroutineScope = Dispatchers.IO
+    internal var wasConnected = true
+    internal var showConnectivityOnSnackbar = MutableLiveData<Unit>()
+    internal var showConnectivityOffSnackbar = MutableLiveData<Unit>()
+    internal val notConnectedToInternet = MutableLiveData<Unit>()
+    internal val coroutineScope = Dispatchers.IO
 
-    init {
+    internal fun loadMovies() {
+        if (wasConnected.not()) return
         viewModelScope.launch(context = coroutineScope) {
             fetchMovieDetailsFromApi(MOVIE_ID)
             fetchSimilarMoviesFromApi(MOVIE_ID)
@@ -56,7 +57,7 @@ class MovieDetailsViewModel(
     fun setMovieAsFavoriteOnCache(isFavoriteMovie: Boolean) =
         setIsFavoriteMovie(isFavoriteMovie)
 
-    fun mustShowConnectivitySnackbar(
+    fun updateConnectivityStatus(
         hasNetworkConnectivity: Boolean
     ) {
         if (hasNetworkConnectivity.not()) {
