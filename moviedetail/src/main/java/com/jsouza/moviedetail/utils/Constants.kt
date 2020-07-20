@@ -10,5 +10,7 @@ class Constants {
         const val DEFAULT_LANGUAGE = "pt-BR"
         const val IMAGE_MAX_HEIGHT_POSTER = 375
         const val IMAGE_MAX_WIDTH_POSTER = 250
+        const val IMAGE_MAX_HEIGHT_BACKDROP = 281
+        const val IMAGE_MAX_WIDTH_BACKDROP = 500
     }
 }

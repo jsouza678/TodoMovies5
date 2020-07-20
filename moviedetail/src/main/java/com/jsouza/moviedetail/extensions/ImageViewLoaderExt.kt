@@ -11,7 +11,9 @@ import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import com.jsouza.moviedetail.R
+import com.jsouza.moviedetail.utils.Constants.Companion.IMAGE_MAX_HEIGHT_BACKDROP
 import com.jsouza.moviedetail.utils.Constants.Companion.IMAGE_MAX_HEIGHT_POSTER
+import com.jsouza.moviedetail.utils.Constants.Companion.IMAGE_MAX_WIDTH_BACKDROP
 import com.jsouza.moviedetail.utils.Constants.Companion.IMAGE_MAX_WIDTH_POSTER
 
 private var placeHolderId: Int = R.drawable.place_holder
@@ -39,6 +41,7 @@ fun ImageView.loadBackdropImage(url: String? = null) {
 
     placeHolderId.let {
         requestBuilder
+            .override(IMAGE_MAX_WIDTH_BACKDROP, IMAGE_MAX_HEIGHT_BACKDROP)
             .error(errorImageId)
     }
 
