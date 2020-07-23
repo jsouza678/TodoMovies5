@@ -22,20 +22,20 @@ val similarMoviesModule = module {
     }
 
     // Usecases
-    single {
+    factory {
         FetchSimilarMoviesFromApi(
             get<SimilarMoviesRepository>()
         )
     }
 
-    single {
+    factory {
         GetSimilarMoviesFromDatabase(
             get<SimilarMoviesRepository>()
         )
     }
 
     // Adapter
-    single {
+    factory {
         SimilarMoviesAdapter()
     }
 }

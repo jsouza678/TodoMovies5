@@ -39,13 +39,13 @@ val detailModule = module {
     }
 
     // Usecases
-    single {
+    factory {
         FetchMovieDetailsFromApi(
             get<MovieDetailRepository>()
         )
     }
 
-    single {
+    factory {
         GetMovieDetailsFromDatabase(
             get<MovieDetailRepository>()
         )

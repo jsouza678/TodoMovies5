@@ -24,13 +24,13 @@ val favoriteMoviesModule = module {
     }
 
     // Usecases
-    single {
+    factory {
         GetIsFavoriteMovie(
             get<FavoriteMoviesRepository>()
         )
     }
 
-    single {
+    factory {
         SetIsFavoriteMovie(
             get<FavoriteMoviesRepository>()
         )

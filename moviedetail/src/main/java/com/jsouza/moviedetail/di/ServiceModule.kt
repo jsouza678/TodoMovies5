@@ -26,7 +26,7 @@ val serviceModule = module {
         )
     }
 
-    single(named(okHttp)) {
+    factory(named(okHttp)) {
         createOkHttpClient()
     }
 
